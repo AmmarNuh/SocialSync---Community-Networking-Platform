@@ -39,7 +39,7 @@ Join us in building a vibrant online community where individuals can connect, le
 
 ## Getting Started
 
-1. Clone this repository: `git clone https://github.com/your-username/socialsync.git`
+1. Clone this repository: `git clone https://github.com/AmmarNuh/SocialSync---Community-Networking-Platform.git`
 
 2. Navigate to the project directory: `cd socialsync`
 
