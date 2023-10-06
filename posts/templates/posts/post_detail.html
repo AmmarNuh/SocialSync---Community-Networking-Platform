@@ -1,0 +1,45 @@
+{% extends "posts/post_base.html" %}
+{% load bootstrap5 %}
+
+{% block head_block%}<title>Post Details</title>{%endblock%}
+
+
+ 
+{% block post_post%}
+
+<div class="container">
+
+    <div class="col-md-6">
+        {% include 'posts/_post.html' %}
+    </div>
+
+<br>      <br>
+
+    <div class="col-md-2">
+      <div class="media_footer">
+        {% if user.is_authenticated and post.user == user %}
+          <a href="{% url 'posts:delete_post' pk=post.pk %}" title='delete' class="btn btn-le btn-fill btn-danger">
+            <span class="glyphicon glyphicon-remove " aria-hidden='true'></span>
+            <span class=" icon-label"> Delete </span>
+          </a>
+
+          <a href="{% url 'posts:edit_post' pk=post.pk %}" title='edit' class="btn btn-le btn-fill btn-warning">
+            <span class="glyphicon glyphicon-edit " aria-hidden='true'></span>
+            <span class=" icon-label"> Edit </span>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+    <br>
+<div>
+  
+<div class="container">
+
+  <div class="col-md-8">
+    <p>   in <a href="{% url 'communities:single' post.community.slug %}">
+      {{post.community|title}}</a> Community.</P>
+  <div>
+    <div>
+
+{% endblock%}

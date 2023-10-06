@@ -1,0 +1,86 @@
+{% extends "communities/communities_base.html" %}
+{% load bootstrap5 %}
+
+{% block head_block%}
+    <title> Community Details</title>
+{%endblock%}
+
+                                          <!-- ####################### -->
+{% block precommunity%}
+  <div class="container jumbotron">
+
+<!-- Handlles community details -->
+      <h1>{{ community.name }}</h1>
+      {% comment %} <h1>{{ object.name }}</h1> {% endcomment %}
+
+      <h2>{{ community.members.count }} member {{ community.members.count|pluralize }} in this Community</h2>
+      <p>Description: <br>{{ community.description }}.</p>
+
+      <br>
+      <div class="content">
+
+        <div class="col-md-8">
+          {% if user in community.members.all %}
+              <a href="{% url 'communities:leave' slug=community.slug %}"
+                class="btn btn-le btn-ffill btn-warning">
+                <span class="glyphicon glyphicon-remove"></span> Leave</a>
+          {% else %}
+              <a href="{% url 'communities:join' slug=community.slug %}"
+                class="btn btn-le btn-ffill btn-default">
+                <span class="glyphicon glyphicon-ok-circle"></span> Join</a>
+          {% endif %}
+
+
+            {% if user.is_authenticated %}
+              <a href="{% url 'communities:update' community.slug  %}" title='edit' class=" btn btn-le btn-fill btn-default">
+                <span class="glyphicon glyphicon-edit text-warning" aria-hidden='true'></span>
+                <span class="text-warning icon-label"> Edit </span>
+              </a>
+            {% endif %}
+        </div>
+        <div class="col-md-0">
+            <a href="{% url 'posts:new_post' %}"
+            class="btn btn-le btn-ffill btn-default">
+            <span class="glyphicon glyphicon-pencil"></span> Post</a>
+        </div>
+
+      </div>
+  </div>
+{% endblock%}
+                                          <!-- ####################### -->
+{% block community_contant %}
+  <div class="container">
+      <div class="row">
+        
+    <div class="col-md-2">
+<!-- List community's members -->
+      <h2>Members:</h2>
+      <ol>
+        {% for member in members %}
+        <li><a href="{% url 'posts:for_user' member.username %}">{{ member.first_name }} {{ member.last_name }}</a></li>
+      {% endfor %}
+      </ol>
+    </div> 
+  
+    <div class="col-md-6">
+      
+<!-- List community's POSTS -->
+      {% if community.posts.count == 0  %}
+      <div class="container">
+        <h2>No Posts in the Community yet. Be the first one.. </h2>
+        <hr>
+        <a href="{% url 'posts:new_post'%}"
+          class="btn btn-le btn-ffill btn-default">
+          <span class="glyphicon glyphicon-pencil"></span> Post</a>
+      </div>
+      {% else %}
+          {% for post in community.posts.all %}
+            {% include 'posts/_post.html' %}
+          {% endfor%}
+          <br>
+      {% endif %}
+    </div>
+
+    </div>
+  </div>
+{% endblock%}

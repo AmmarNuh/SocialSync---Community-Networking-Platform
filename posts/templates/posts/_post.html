@@ -1,0 +1,24 @@
+<div class="post media">
+  <div class="media-body">
+
+<!-- show the post content followed by its writer -->
+
+    <h3><a href="{% url 'posts:post_detali' post.user.username post.pk %}"> {{ post.message_html|safe}}</h3></a>
+    {% comment %} <h3>{{ post.message_html|safe}}</h3> {% endcomment %}
+
+    <div class="media-body">
+      {% comment %} by: <a href="{% url 'posts:for_user' post.user.username %}">
+      @{{post.user.username}}</a> {% endcomment %}
+
+      <p class="media-heading">
+        <!-- go to this user post list -->
+        <span class="username">
+          <a href="{% url 'posts:for_user' post.user.username %}">@{{post.user.username}} - </a>
+        </span>
+        <time class="time">{{post.created_at}}</time>
+      </p>
+    </div>
+
+
+  </div>
+</div>

@@ -1,0 +1,26 @@
+{% extends "communities/communities_base.html" %}
+{% load bootstrap5 %}
+
+{% block head_block%}
+    <title> Community about</title>
+{%endblock%}
+
+
+<div class="container">
+    <div class="row">
+<!-- ####################### -->
+
+      {% block precommunity%}
+      <div class="container jumbotron">
+        <h1> @{{ title|title }}</h1>
+        {% for x in now %}
+            <h2> {{ x.name }}</h2>
+            <p> {{ x.description }}</p>
+            <p> {{ x.slug }}</p>
+
+            <hr>
+        {% endfor%}
+    </div>
+  </div>
+
+  {% endblock%}

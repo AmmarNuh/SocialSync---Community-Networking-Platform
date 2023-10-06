@@ -1,0 +1,43 @@
+{% extends "posts/post_base.html" %}
+{% load bootstrap5 %}
+
+{% block head_block%}<title>User Posts</title>{%endblock%}
+ 
+{% block prepost %}
+    <div class="col-md-3">
+<!-- USER INFO -->
+
+        <h2>{{ post_user.first_name|title }} {{ post_user.last_name|upper }}</h2>
+        <span class="username">
+          <a href="{% url 'posts:for_user' post_user.username %}">@{{post_user.username}}</a>
+        </span>
+        <hr>
+        <a href="{% url 'posts:new_post' %}"
+        class="btn btn-le btn-ffill btn-default">
+        <span class="glyphicon glyphicon-pencil"></span> Post</a>
+    </div>
+{% endblock%}
+
+{% block post_contant %}
+  <div class="col-md-5">
+<!-- USER POST HISTORY -->
+    <h3>Post History:</h3><br>
+
+    {% if post_list.count == 0  %}
+      <p>You don's have any Posts. Write the first one.. </p>
+
+    {% else %}
+      {% for post in post_list %}
+      <ul>
+        <li>
+        In <a href="{% url 'communities:single' post.community.slug %}">
+          {{post.community|title}}</a> community:
+            {% include 'posts/_post.html' %}
+            <hr>
+        </li>
+      </ul>        
+      {% endfor %}
+    {% endif %}
+
+  </div>
+{% endblock%}

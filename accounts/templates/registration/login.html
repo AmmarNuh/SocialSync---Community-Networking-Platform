@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+
+{% block head_block%}
+    <title>Login</title>
+{%endblock%}
+
+{% block body_block %}
+
+  <div class="container">
+    <h1>Log In</h1>
+    <form method="POST">
+      {%csrf_token%}
+      {% bootstrap_form form %}
+      <input type="submit" class='btn btn-default' value="Login">
+    </form>
+  </div>
+
+  <hr>
+
+  <div class="container">
+    <p> Sign UP Now.. </p>
+    <a href="{% url 'accounts:signup' %}"
+    class="btn btn-le btn-ffill btn-default">Sign UP</a>
+  </div>
+
+{%endblock%}

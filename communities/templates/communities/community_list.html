@@ -1,0 +1,65 @@
+{% extends "communities/communities_base.html" %}
+{% load bootstrap5 %}
+
+{% block head_block%}<title> Community List</title>{%endblock%}
+
+                                          <!-- ####################### -->
+{% block precommunity%}
+  <div class="col-mid-4">
+    <div class="content">
+      <div class="jumbotron">
+
+        {% if user.is_authenticated %}
+            <h2>Welcome back: <a href="{% url 'posts:for_user' user.username %}">{{user.first_name|title}} {{user.last_name|upper}}</a></h2>
+            <h4><a href="{% url 'posts:for_user' user.username %}">@{{user.username}}</a></h4>
+<br>
+            <p>Create or join a Community</p>
+            <a href="{% url 'communities:new_comm' %}">
+              <span class="glyphicon glyphicon-plus-sign"></span> Create Community 
+            </a>
+        {%else%}
+          <p>Login and join the Community</p>
+        {% endif %}
+        
+        <h3>Communities List:</h3>
+
+
+      </div>
+    </div>
+  </div>
+{% endblock%}
+                                          <!-- ####################### -->
+{% block community_contant %}
+<div class="container">
+  <div class="col-md-8">
+    <div class="list-comm">
+
+      <!-- list all communities and go with click -->
+      {% for community in object_list %}
+      <h3 class="title list-list-comm-item-heading"> • <a href="{% url 'communities:single' slug=community.slug %}">
+            {{community.name}}</h3>   </a>
+
+            <div class="list-comm-item-text container-fluid" >
+                {{ community.description_html|safe}}   
+            </div>
+
+            <div class="row">
+
+              <div class="col-md-4">
+                  <span class="badge">{{ community.members.count }}</span> member {{ community.members.count  }}
+              </div>
+
+              <div class="col-md-4">
+                <span class="badge">{{ community.posts.count }}</span> Post {{ community.posts.count|pluralize }}
+              </div>
+
+            </div>
+            <hr>
+
+          {% comment %} </a> {% endcomment %}
+      {% endfor%}
+    </div>
+  </div>
+</div>
+
+{% endblock%}

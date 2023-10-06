@@ -1,0 +1,20 @@
+{% extends "posts/post_base.html" %}
+{% load bootstrap5 %}
+
+{% block head_block%}<title>Post Details</title>{%endblock%}
+
+{% block post_post%}
+
+    <ul>
+        {% for post in latest %}
+            {% include 'posts/_post.html' %}
+{% comment %} 
+            <h3>{{ post.user }}: {{ post.message }}</h3>
+            <p> Published: {{ post.created_at }} </p> {% endcomment %}
+        {% endfor %}
+
+        <h2> Num of Posts: {{latest.count}} </h2>
+
+    </ul>
+
+{%endblock%}

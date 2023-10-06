@@ -1,0 +1,25 @@
+{% comment %} {% extends "communities/communities_base.html" %}
+{% load bootstrap5 %}
+
+{% block head_block%}<title> Community Members</title>{%endblock%}
+
+{% block precommunity%}
+<h1>Community Members List</h1>
+<ul>
+  {% for community in communities %}
+    <li>
+      <h2>{{ community.name }}</h2>
+      <ul>
+        {% for member in community.members.all %}
+          <li>{{ member.user.username }}</li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% endfor %}
+</ul>
+{% endblock%}
+
+    </div>
+  </div>
+</div> {% endcomment %}
+

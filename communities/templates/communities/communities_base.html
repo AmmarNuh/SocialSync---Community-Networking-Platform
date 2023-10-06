@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+{% load static %}
+{% block head_block%}
+{%endblock%}
+
+{% block body_block %}
+  <div class="container">
+    <div class="row">
+
+      {% block precommunity%} {% endblock%}
+      {% block community_contant %} {% endblock%}
+      {% block postcommunity%} {% endblock%}
+
+    </div>
+  </div>
+{%endblock%}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+{% load static %}
+
+{% block head_block%}
+{%endblock%}
+
+{% block body_block %}
+<div class='posts_page'>
+  <div class="container">
+    <div class="row">
+
+      {% block prepost%} {% endblock%}
+      {% block post_contant %} {% endblock%}
+      {% block post_post%} {% endblock%}
+
+    </div>
+  </div>
+</div>
+{%endblock%}
